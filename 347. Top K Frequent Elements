@@ -1,0 +1,55 @@
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number[]}
+ */
+var topKFrequent = function(nums, k) {
+    nums.sort(function(a, b) {
+  return a - b;
+});
+   //check if its repeating
+   let hash = {}
+   let counter = 1;
+   for(let i = 0; i<nums.length;i++){
+       if (hash[nums[i]]==undefined){
+           counter = 1;
+           hash[nums[i]]=counter;
+           console.log(hash)
+           counter++;
+           
+       }
+        else{
+            hash[nums[i]]=counter;
+            console.log(hash)
+            counter++;
+        }
+   }
+   let l=0;
+   let list =[];
+   let temp = 0;
+   let p = 0;
+   while(l<k){
+    for(let j = 0;j<nums.length;j++){
+        if(temp<hash[nums[j]] ){
+            
+            temp=hash[nums[j]]
+            console.log(hash[nums[j]]+"this is" +j)
+            p=j
+        }
+    }
+    l++;
+    list.push(nums[p]);
+    console.log(list)
+    // let jk =nums.filter(element=>{element!==nums[p]})
+    var jk = nums.filter(function(value){ 
+        return value !== nums[p];
+    });
+    nums=jk
+    console.log("this is nums"+nums +"hi")
+   }
+   console.log("this is final"+list)
+   
+   return list;
+   //count if its repeating
+   //return the k amount
+};
